@@ -123,8 +123,8 @@ float brush_ripple_detector(float motor_current, float motor_voltage)
     // V_ripple = L * di/dt (inductive kick during commutation)
     float inductive_ripple = INDUCTANCE * fabsf(current_derivative);
     
-    // Calculate resistive component ripple
-    float resistive_ripple = fabsf(current_ac) * RESISTANCE;
+    // Calculate resistive component ripple using adaptive resistance estimate
+    float resistive_ripple = fabsf(current_ac) * resistance_estimate;
     
     // Combine current and voltage ripple indicators
     // Weight both the AC components and the derivative-based detection
